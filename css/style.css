@@ -1,0 +1,478 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Ubuntu", sans-serif;
+    
+}
+:root{
+    --blue:#287bff;
+    --white:#fff;
+    --grey:#f5f5f5;
+    --black:#222;
+    --black2:#999;
+}
+
+body{
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+}
+
+.navigation{
+    position: fixed;
+    width:300px;
+    height: 100%;
+    background-color: var(--blue);
+    border-left: 10px solid var(--blue);
+    transition: 0.5s;
+    overflow: hidden;
+}
+.navigation.active
+{
+    width:80px;
+}
+.navigation ul{
+    position: absolute;
+    width: 100%;
+    top:0;
+    left: 0;
+}
+
+.navigation ul li{
+    position: relative;
+    width:100%;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.navigation ul li:hover,
+.navigation ul li.hovered
+{
+    background-color: var(--grey);
+}
+.navigation ul li:nth-child(1)
+{
+    margin-bottom:40px;
+    pointer-events: none;
+}
+.navigation ul li a
+{
+    position: relative;
+    display: flex;
+    min-width:100%;
+    text-decoration: none;
+    color:var(--white)
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a
+{
+    color:var(--blue)
+}
+.navigation ul li a .icon
+{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 70px;
+    text-align: center;
+}
+.navigation ul li a .icon ion-icon{
+    font-size: 1.75em;
+}
+.navigation ul li a .title
+{
+    position: relative;
+    display:flex;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+}
+/*
+ Borde Curvo en el lado externo del menú
+*/
+.navigation ul li a:hover::before,
+.navigation ul li.hovered a::before
+{
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top:-50px;
+    right: 0;
+    background-color: transparent;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 35px 35px 0 10px var(--white);
+}
+.navigation ul li a:hover::after,
+.navigation ul li.hovered a::after
+{
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    bottom:-50px;
+    right: 0;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px var(--white);
+    pointer-events: none;
+}
+/*main*/
+
+.main
+{
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background-color: var(--white);
+    transition: .5s;
+}
+.main.active{
+    width: calc(100% - 80px);
+    left: 80px;
+}
+
+/*topbar*/
+
+.topbar{
+    height: 60px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+.toggle{
+    position: relative;
+    top:0;
+    left:0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 2.5em;
+}
+.search
+{
+    position: relative;
+    width:400px;
+    margin: 0 10px;
+}
+.search label
+{
+    position: relative;
+    width:100%;
+}
+.search label input
+{
+    width:100%;
+    height: 40px;
+    border-radius: 40px;
+    padding: 5px 20px;
+    padding-left: 35px;
+    font-size: .9em;
+    outline: none;
+    border: 1px solid var(--black2);
+}
+
+.search label ion-icon
+{
+    position: absolute;
+    left: 10px;
+    top:0;
+    font-size: 1.2em;
+}
+.user
+{
+    position: relative;
+    min-width:40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.user img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* cardBox */
+
+.cardBox
+{
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: 1fr;
+    grid-gap: 20px;
+    width:100%;
+    padding: 20px;
+}
+.cardBox .card{
+    position:relative;
+    background-color:var(--white);
+    box-shadow: 0 7px 25px rgba(0,0,0,0.28);
+    border-radius: 20px;
+    display:flex;
+    justify-content: space-between;
+    cursor: pointer;
+    padding:25px;
+}
+
+.cardBox .card .numbers{
+    position: relative;
+    font-weight: 500;
+    font-size: 2em;
+    color:var(--blue);
+}
+
+.cardBox .card .cardName
+{
+    color:var(--black2);
+    font-size: 1em;
+    margin-top: 5px;
+}
+.cardBox .card .iconBx
+{
+    font-size: 3em;
+    color:var(--black);
+}
+.cardBox .card:hover,
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName,
+.cardBox .card:hover .iconBx{
+    background-color: var(--blue);
+    color:var(--white);
+}
+
+/* Details List */
+
+.details{
+    display: grid;
+    width: 100%;
+    position: relative;
+    padding: 20px;
+    grid-template-columns: 2fr 1fr;
+    row-gap: 30px;
+    column-gap: 30px;
+    margin-top: 10px;
+}
+.details .recentOrders{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    padding: 20px;
+    background-color: var(--white);
+    box-shadow: 0 7px 25px rgba(0,0,0,0.28);
+    border-radius: 20px;
+}
+.cardHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.cardHeader h2{
+    position: relative;
+    color: var(--blue);
+}
+.btn{
+    position: relative;
+    padding: 5px 10px;
+    background-color: var(--blue);
+    color:var(--white);
+    text-decoration: none;
+}
+.details table{
+    width:100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.details table thead td{
+    font-weight: 600;
+
+}
+.details .recentOrders table tr{
+    color:var(--black1);
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+.details .recentOrders table tr:last-child
+{
+    border-bottom:none;
+}
+.details .recentOrders table tbody tr:hover{
+    color:var(--white);
+    background-color:var(--blue);
+}
+.details .recentOrders table tr td:last-child,
+.details .recentOrders table tr td:nth-child(2)
+{
+    text-align: end;
+}
+.details .recentOrders table tr td:nth-child(3)
+{
+    text-align: center;
+}
+.status
+{
+    color:var(--white);
+    padding: 2px 5px;
+    margin-right: 5px;
+    position: relative;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.status.delivered
+{
+    background-color: rgb(19, 204, 19);
+}
+.status.waiting
+{
+    background-color: rgb(231, 36, 36);
+}
+.status.inStore
+{
+    background-color: rgb(198, 238, 23);
+}
+.status.delivered
+{
+    background-color: rgb(19, 204, 19);
+}
+ /*New Costumers*/
+
+ .newCostumers
+ {
+     position: relative;
+     display: grid;
+     min-height: 500px;
+     padding:20px;
+     box-shadow: 0 7px 25px rgba(0,0,0,0.28);
+     border-radius: 20px;
+ }
+
+ .newCostumers table tr{
+     height: 60px;
+ }
+
+ .newCostumers .imgBx
+{
+    position: relative;
+    width:40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.newCostumers .imgBx img{
+    position: relative;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+.newCostumers table tr:hover{
+    background-color: var(--blue);
+    color:var(--white);
+
+}
+
+.newCostumers table tr td{
+    padding:10px 12px;
+}
+.newCostumers table tr td h4{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2em;
+}
+newCostumers table tr td h4 span{
+    font-size: 14px;
+    color:var(--black2)
+}
+newCostumers table tr:hover td h4{
+    color:white;
+}
+
+/* respnsive */
+
+@media (max-width:920px)
+{
+    .navigation
+    {
+        width:0;
+    }
+    .main
+    {
+        width:100%;
+        left:0;
+    }
+    .navigation.active
+    {
+        left:0;
+        width:300px;
+    }
+    .main.active
+    {
+        left:300px;
+    }
+    .cardBox{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width:720px)
+{
+    .body{
+        overflow: visible;
+    }
+    .details
+    {
+        grid-template-columns: repeat(1,1fr);
+    }
+    .recentOrders
+    {
+        overflow-x: auto;
+    }
+}
+
+@media (max-width:520px)
+{
+    .cardBox
+    {
+        grid-template-columns: repeat(1,1fr);
+    }
+    .toggle{
+        z-index: 1001;
+    }
+    .main.active .toggle
+    {
+        color:var(--white);
+        left: 100px;
+    }
+    .navigation
+    {
+        width:100px;
+        left:-100px;
+        z-index: 1000;
+    }
+    .navigation.active
+    {
+        width:100%;
+        left: 0;
+    }
+}
